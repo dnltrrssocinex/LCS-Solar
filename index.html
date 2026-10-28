@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Scroll-built diagram of the Task 01 and Task 02 GHL workflows, from the solar form email to reminders and team hand-off.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Solar Form Automation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@100;300;400;500;700&display=swap">
+<style>
+/* Layout: short intro, then a pinned 340svh section that draws the GHL flow from scroll progress, then the workflow list. */
+:root {
+  --bg: #f0f8ff;
+  --surface: #ffffff;
+  --surface-2: #e6f0fa;
+  --ink: #0e1b2a;
+  --ink-2: #44566b;
+  --ink-3: #566779;
+  --accent: #2d78c2;
+  --accent-ink: #2566a6;
+  --ok: #1f7a4d;
+  --warn: #9a5b00;
+  --line: rgb(14 27 42 / 0.08);
+  --line-strong: rgb(14 27 42 / 0.14);
+  --grid-line: rgb(14 27 42 / 0.035);
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --ease-spring: linear(0, 0.0941 5.6%, 0.2736 11.1%, 0.4548 16.7%, 0.6076 22.2%, 0.7255 27.8%, 0.8119 33.3%, 0.8732 38.9%, 0.9156 44.4%, 0.9444 50%, 0.9636 55.6%, 0.9764 61.1%, 0.9848 66.7%, 0.9902 72.2%, 0.9938 77.8%, 0.996 83.3%, 0.9975 88.9%, 0.9984 94.4%, 1 100%);
+  --dur-base: 500ms;
+  --gutter: clamp(16px, 3.5vw, 56px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0a0a; --surface: #141414; --surface-2: #1e1e1e;
+    --ink: #ededed; --ink-2: #a1a1a1; --ink-3: #878787;
+    --accent: #2d78c2; --accent-ink: #7db3e8; --ok: #5cc48f; --warn: #e0a54a;
+    --line: rgb(255 255 255 / 0.08); --line-strong: rgb(255 255 255 / 0.14); --grid-line: rgb(255 255 255 / 0.03);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a0a0a; --surface: #141414; --surface-2: #1e1e1e;
+  --ink: #ededed; --ink-2: #a1a1a1; --ink-3: #878787;
+  --accent: #2d78c2; --accent-ink: #7db3e8; --ok: #5cc48f; --warn: #e0a54a;
+  --line: rgb(255 255 255 / 0.08); --line-strong: rgb(255 255 255 / 0.14); --grid-line: rgb(255 255 255 / 0.03);
+  color-scheme: dark;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-base: 180ms; --ease-spring: ease; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.wrap {
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Section head (from section-head.css) ---------- */
+.wk-eyebrow {
+  margin: 0 0 18px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.wk-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 4.4cqi, 4.2rem);
+  font-weight: 100;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.wk-title__bold { font-weight: 700; }
+
+/* ---------- Intro ---------- */
+.intro {
+  container-type: inline-size;
+  padding-block: clamp(48px, 12vh, 120px) clamp(24px, 6vh, 64px);
+}
+.intro__inner {
+  display: grid;
+  gap: 20px;
+  max-width: 980px;
+}
+.intro h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 7cqi, 5.6rem);
+  font-weight: 100;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.intro h1 b { font-weight: 700; }
+.intro p {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--ink-2);
+  font-size: 17px;
+}
+.intro__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.intro__meta span { display: inline-flex; align-items: center; gap: 8px; }
+.intro__meta .ok::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+.cue { animation: cue 1.8s ease-in-out infinite; display: inline-block; }
+@keyframes cue { 50% { transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { .cue { animation: none; } }
+
+/* ---------- Live automation (from automation.css) ---------- */
+.fl {
+  --bar: 0px;
+  position: relative;
+  height: 340svh;
+  container-type: inline-size;
+}
+.fl__pin {
+  position: sticky;
+  top: var(--bar);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(20px, 4vh, 36px);
+  height: calc(100svh - var(--bar));
+  padding-block: clamp(16px, 3vh, 28px);
+  overflow: clip;
+}
+.fl__head .wk-eyebrow { margin-bottom: 12px; }
+.fl__grid { display: grid; gap: 20px; min-height: 0; }
+@media (min-width: 1024px) {
+  .fl__grid {
+    grid-template-columns: minmax(190px, 240px) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(24px, 3vw, 48px);
+  }
+}
+
+.fl__rail { position: relative; min-width: 0; }
+.fl__rule { display: none; }
+.fl__steps { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; padding: 0; list-style: none; }
+.fl__steps > li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--ink-3);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 300ms ease;
+}
+.fl__steps > li[data-done] { color: var(--ink); }
+.fl__num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; }
+.fl__details { display: grid; margin-top: 10px; }
+.fl__details > p {
+  grid-area: 1 / 1;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.fl[data-live] .fl__details > p {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 300ms ease, transform var(--dur-base) var(--ease-spring);
+}
+.fl[data-live] .fl__details > p[data-on] { opacity: 1; transform: none; }
+.fl:not([data-live]) .fl__details > p { grid-area: auto; }
+@media (min-width: 1024px) {
+  .fl__rail { padding-left: 22px; }
+  .fl__rule {
+    position: absolute;
+    inset: 0 auto 0 0;
+    display: block;
+    width: 1px;
+    background: var(--line);
+  }
+  .fl__rule > i {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform-origin: 50% 0;
+  }
+  .fl[data-live] .fl__rule > i { transform: scaleY(0); }
+  .fl__steps { flex-direction: column; gap: 10px; }
+  .fl__details { margin-top: 18px; }
+}
+
+.fl__panel {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  padding: 20px clamp(16px, 2.4cqi, 28px) 16px;
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.fl__panel-head { display: grid; gap: 8px; }
+.fl__panel-title {
+  margin: 0;
+  font-size: clamp(17px, 1.8cqi, 22px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.fl__panel-title > span { color: var(--ink-3); }
+.fl__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.fl__legend > span,
+.fl__chip > span:first-child { display: inline-flex; align-items: center; gap: 8px; }
+.fl__legend > span::before,
+.fl__chip > span:first-child::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  box-shadow: inset 0 0 0 1px var(--ink-2);
+}
+.fl__legend > span[data-plane='lead']::before,
+.fl__chip > span[data-plane='lead']::before { background: var(--ink-2); }
+.fl__readout {
+  position: absolute;
+  top: 22px;
+  right: clamp(16px, 2.4cqi, 28px);
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.fl__readout[data-live] { color: var(--ok); }
+
+.fl__svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(100svh - 420px);
+  min-height: 150px;
+  aspect-ratio: 1200 / 555;
+  margin-top: 4px;
+  overflow: hidden;
+}
+.fl__zone > rect {
+  fill: var(--grid-line);
+  stroke: var(--line-strong);
+  stroke-dasharray: 4 4;
+  vector-effect: non-scaling-stroke;
+}
+.fl__zone > text {
+  fill: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-anchor: middle;
+  text-transform: uppercase;
+}
+.fl__zone[data-task='02'] > text { fill: var(--accent-ink); }
+.fl__node { cursor: pointer; outline: none; transition: opacity 450ms ease; }
+.fl__box {
+  fill: var(--bg);
+  stroke: var(--line-strong);
+  vector-effect: non-scaling-stroke;
+  transition: stroke 200ms ease;
+}
+.fl__contour {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.25;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  opacity: 0.3;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+.fl__title { fill: var(--ink); font-family: var(--font-sans); font-size: 18px; text-anchor: middle; }
+.fl__mark { fill: var(--ink-2); stroke: var(--ink-2); vector-effect: non-scaling-stroke; }
+.fl__node[data-plane='auto'] .fl__mark { fill: none; }
+.fl__icon { color: var(--ink-2); }
+.fl__tag > rect { fill: var(--grid-line); stroke: var(--line-strong); vector-effect: non-scaling-stroke; }
+.fl__tag > text {
+  fill: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 1.2px;
+  text-anchor: middle;
+  text-transform: uppercase;
+}
+.fl__signal {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  opacity: 0.85;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 200ms ease;
+}
+.fl__arrow { fill: var(--ink-3); }
+.fl__packet { fill: var(--accent); opacity: 0; pointer-events: none; }
+.fl__dash {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.25;
+  stroke-dasharray: 4 4;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 200ms ease;
+}
+.fl__link-label {
+  fill: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+.fl__mask-draw { fill: none; stroke: white; stroke-width: 10; stroke-dasharray: 1; stroke-dashoffset: 0; }
+
+.fl__link { transition: opacity 450ms ease; }
+.fl__panel[data-focus] .fl__node:not([data-rel]) { opacity: 0.3; }
+.fl__panel[data-focus] .fl__link:not([data-hi]) { opacity: 0.2; }
+.fl__link[data-hi] .fl__signal,
+.fl__link[data-hi] .fl__dash { stroke: var(--ink); }
+.fl__node[data-on] .fl__box { stroke: var(--ink); stroke-width: 2; }
+.fl__node:focus-visible .fl__box { stroke: var(--accent); stroke-width: 2; }
+
+.fl__inspect {
+  display: grid;
+  gap: 12px;
+  min-height: 112px;
+  padding-top: 8px;
+  padding-right: 250px;
+}
+.fl__card { display: grid; gap: 6px; min-width: 0; animation: fl-in 350ms var(--ease-spring); }
+@keyframes fl-in { from { opacity: 0; transform: translateY(8px); } }
+.fl__chip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 0;
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.fl__chip > span + span { padding-left: 12px; border-left: 1px solid var(--line-strong); }
+.fl__card > h4 { margin: 0; font-size: 20px; font-weight: 300; letter-spacing: -0.02em; }
+.fl__about { margin: 0; max-width: 68ch; color: var(--ink-2); font-size: 14px; }
+.fl__note { margin: 0; color: var(--accent-ink); font-family: var(--font-mono); font-size: 12px; overflow-wrap: anywhere; }
+.fl__hint {
+  align-self: end;
+  margin: 0;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.fl__pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+.fl__pager > button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line);
+  cursor: pointer;
+}
+.fl__pager > button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fl__bars { position: absolute; right: clamp(16px, 2.4cqi, 28px); bottom: 22px; display: flex; gap: 5px; }
+.fl__bars > i {
+  width: 14px;
+  height: 2px;
+  background: var(--line-strong);
+  transform: scaleX(0.55);
+  transform-origin: 0 50%;
+  transition: transform var(--dur-base) var(--ease-spring), background-color 200ms ease;
+}
+.fl__bars > i[data-on],
+.fl__panel:not([data-focus]) .fl__bars > i[data-build] { background: var(--ink); transform: none; }
+
+@media (max-width: 767px) {
+  .fl { --bar: 0px; height: 300svh; }
+  .fl__inspect { padding-right: 0; }
+  .fl__readout, .fl__bars { display: none; }
+  .fl__svg { max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fl { height: auto; }
+  .fl__pin { position: relative; height: auto; padding-block: clamp(64px, 12vh, 120px); }
+}
+
+/* ---------- Workflow list ---------- */
+.flows { container-type: inline-size; padding-block: clamp(48px, 10vh, 112px); }
+.flows__inner { display: grid; gap: 28px; max-width: 1180px; }
+.flows__list { display: grid; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
+.flows__list > li {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.4fr) auto;
+  gap: 8px 24px;
+  align-items: baseline;
+  padding-block: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.flows__task { color: var(--ink-3); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; }
+.flows__name { margin: 0; font-family: var(--font-mono); font-size: 14px; font-weight: 500; overflow-wrap: anywhere; }
+.flows__start, .flows__does { margin: 0; color: var(--ink-2); font-size: 14px; }
+.flows__start b {
+  display: block;
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.flows__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ok);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.flows__status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.flows__open { margin: 0; max-width: 72ch; color: var(--ink-2); font-size: 14px; }
+.flows__open b { color: var(--warn); font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-right: 8px; }
+code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink); }
+@media (max-width: 900px) {
+  .flows__list > li { grid-template-columns: 48px minmax(0, 1fr); }
+  .flows__list > li > :nth-child(n + 3) { grid-column: 2; }
+}
+</style>
+
+<header class="intro wrap">
+  <div class="intro__inner">
+    <p class="wk-eyebrow">LCS Solar · Email automation · GHL</p>
+    <h1>From inquiry <b>to team review</b></h1>
+    <p>Tasks 01 and 02 are built and tested. One tag sends the solar form, three reminders follow if it does not come back, and a sent form or a reply stops them and tells my team. Scroll to watch the flow build.</p>
+    <div class="intro__meta">
+      <span class="ok">4 workflows tested</span>
+      <span>Email only</span>
+      <span><span class="cue" aria-hidden="true">↓</span> Scroll</span>
+    </div>
+  </div>
+</header>
+
+<section id="automation" class="fl" aria-labelledby="fl-title">
+  <div class="fl__pin wrap">
+    <header class="fl__head">
+      <p class="wk-eyebrow">Live automation · Tasks 01 + 02</p>
+      <h2 id="fl-title" class="wk-title"><span>Ask. Remind.</span> <span class="wk-title__bold">Hand off.</span></h2>
+    </header>
+    <div class="fl__grid">
+      <div class="fl__rail">
+        <span class="fl__rule" aria-hidden="true"><i data-fl-fill></i></span>
+        <ol class="fl__steps" id="fl-steps"></ol>
+        <div class="fl__details" id="fl-details"></div>
+      </div>
+      <div class="fl__panel" id="fl-panel">
+        <div class="fl__panel-head">
+          <h3 class="fl__panel-title">Inquiry to <span>Team Review</span></h3>
+          <p class="fl__legend"><span data-plane="auto">Automation</span><span data-plane="lead">Lead or my team</span></p>
+          <span class="fl__readout" data-fl-readout aria-hidden="true"></span>
+        </div>
+        <svg class="fl__svg" id="fl-svg" viewBox="0 10 1200 555" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Inquiry to team review"></svg>
+        <div hidden id="fl-desc"></div>
+        <div class="fl__inspect" id="fl-inspect" aria-live="polite"></div>
+        <span class="fl__bars" id="fl-bars" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flows wrap" aria-labelledby="flows-title">
+  <div class="flows__inner">
+    <div>
+      <p class="wk-eyebrow">What is built</p>
+      <h2 id="flows-title" class="wk-title"><span>Four</span> <span class="wk-title__bold">workflows</span></h2>
+    </div>
+    <ol class="flows__list">
+      <li>
+        <span class="flows__task">01</span>
+        <p class="flows__name">SOL | 01 | Send Solar Form</p>
+        <p class="flows__start"><b>Starts on</b><code>solar-send-form</code> tag</p>
+        <p class="flows__does">Checks the email, DND, form link and form-done tag. Sends the form email, then adds <code>solar-form-follow-up</code>.</p>
+        <span class="flows__status">Tested</span>
+      </li>
+      <li>
+        <span class="flows__task">01</span>
+        <p class="flows__name">SOL | 01 | Solar Form Received</p>
+        <p class="flows__start"><b>Starts on</b>Solar - Quick Form sent</p>
+        <p class="flows__does">Adds <code>solar-form-done</code>, takes the person out of reminders and tells my team.</p>
+        <span class="flows__status">Tested</span>
+      </li>
+      <li>
+        <span class="flows__task">02</span>
+        <p class="flows__name">SOL | 02 | Form Follow-Up</p>
+        <p class="flows__start"><b>Starts on</b><code>solar-form-follow-up</code> tag</p>
+        <p class="flows__does">Three reminders on Day 1, Day 3 and Day 7, with a rule check before each. Then a final team notice.</p>
+        <span class="flows__status">Tested</span>
+      </li>
+      <li>
+        <span class="flows__task">02</span>
+        <p class="flows__name">SOL | 02 | Stop Form Reminders</p>
+        <p class="flows__start"><b>Starts on</b>Email reply or <code>solar-follow-up-stop</code></p>
+        <p class="flows__does">If the follow-up tag is there, removes the person from reminders, removes the tag and tells my team.</p>
+        <span class="flows__status">Tested</span>
+      </li>
+    </ol>
+    <p class="flows__open"><b>Open checks</b>The stop flow's branch should look for <code>solar-form-follow-up</code>, not the stop tag. The team notice in Solar Form Received shows the form answers blank.</p>
+  </div>
+</section>
+
+<script>
+(() => {
+  const VIEW = { w: 1200, h: 600 }
+  const FULL = [0, 10, 1200, 555]
+  const BUILD_FROM = 0.015, BUILD_TO = 0.8, CONNECTED = 0.85, REPLAY = [0.85, 0.96], SETTLE = 0.05
+  const ROWS = [64, 376]
+  const box = (col, row) => ({ x: 24 + col * 200, y: ROWS[row], w: 156, h: 136 })
+  const pad2 = (n) => String(n).padStart(2, '0')
+  const clamp01 = (v) => Math.min(1, Math.max(0, v))
+
+  const steps = [
+    { name: 'Ask', body: 'My team adds one tag. The flow checks the rules, then emails the short solar form.' },
+    { name: 'Remind', body: 'No form yet? Three reminders go out on Day 1, Day 3 and Day 7, with a rule check before each.' },
+    { name: 'Hand off', body: 'A sent form, an email reply or the stop tag ends the reminders and tells my team.' },
+  ]
+
+  // `at` is the build order in units: a stage or a link is one unit. Top row = the send and reminder path,
+  // bottom row = what ends it. plane: lead = the person or my team acts, auto = GHL does it.
+  const NODES = [
+    { id: 'start', title: 'New Lead', tag: 'Team adds tag', plane: 'lead', icon: 'tag', col: 0, row: 0, at: 0, step: 0,
+      wf: 'SOL | 01 | Send Solar Form', note: 'Starts on: solar-send-form',
+      about: 'My team adds the solar-send-form tag to a new solar inquiry. That tag starts the whole flow.' },
+    { id: 'email', title: 'Form Email', tag: 'Link sent', plane: 'auto', icon: 'mail', col: 1, row: 0, at: 2, step: 0,
+      wf: 'SOL | 01 | Send Solar Form', note: 'Adds: solar-form-follow-up',
+      about: 'Checks the email, DND, the form link and the form-done tag, then sends the short solar form. The new tag starts the reminders.' },
+    { id: 'r1', title: 'Reminder 1', tag: 'Day 1', plane: 'auto', icon: 'clock', col: 2, row: 0, at: 4, step: 1,
+      wf: 'SOL | 02 | Form Follow-Up', note: 'Wait: 1 day, then check the rules',
+      about: 'Waits 1 day and checks the rules again. Then it sends a short reminder with the form link.' },
+    { id: 'r2', title: 'Reminder 2', tag: 'Day 3', plane: 'auto', icon: 'clock', col: 3, row: 0, at: 6, step: 1,
+      wf: 'SOL | 02 | Form Follow-Up', note: 'Wait: 2 more days, then check the rules',
+      about: 'Waits 2 more days and checks the rules. Reminder 2 offers help and links the form again.' },
+    { id: 'r3', title: 'Reminder 3', tag: 'Day 7', plane: 'auto', icon: 'bell', col: 4, row: 0, at: 8, step: 1,
+      wf: 'SOL | 02 | Form Follow-Up', note: 'Wait: 4 more days, then check the rules',
+      about: 'Waits 4 more days for the last reminder. A rule check runs right before it sends.' },
+    { id: 'final', title: 'Team Check-in', tag: 'No form yet', plane: 'auto', icon: 'team', col: 5, row: 0, at: 10, step: 1,
+      wf: 'SOL | 02 | Form Follow-Up', note: 'Removes: solar-form-follow-up',
+      about: 'After three reminders the follow-up tag comes off and my team gets a notice to check the lead. No more automatic emails.' },
+    { id: 'sent', title: 'Form Sent Back', tag: 'Quick form', plane: 'lead', icon: 'form', col: 0, row: 1, at: 12, step: 2,
+      wf: 'SOL | 01 | Solar Form Received', note: 'Starts on: Solar - Quick Form submitted',
+      about: 'The person fills out the Solar - Quick Form at any point, before or between reminders.' },
+    { id: 'done', title: 'Form Done', tag: 'Reminders end', plane: 'auto', icon: 'check', col: 1, row: 1, at: 14, step: 2,
+      wf: 'SOL | 01 | Solar Form Received', note: 'Adds: solar-form-done · Removes: solar-form-follow-up',
+      about: 'Adds solar-form-done, removes the person from Form Follow-Up and removes the follow-up tag.' },
+    { id: 'review', title: 'Team Review', tag: 'Answers sent', plane: 'auto', icon: 'review', col: 2, row: 1, at: 16, step: 2,
+      wf: 'SOL | 01 | Solar Form Received', note: 'Sends: team notice',
+      about: 'My team gets a notice that a new solar form is ready. My team decides if I can help.' },
+    { id: 'reply', title: 'Reply or Stop', tag: 'Email or tag', plane: 'lead', icon: 'reply', col: 3, row: 1, at: 18, step: 2,
+      wf: 'SOL | 02 | Stop Form Reminders', note: 'Starts on: email reply or solar-follow-up-stop',
+      about: 'An email reply to any form email, or my team adding the stop tag, starts the stop flow.' },
+    { id: 'stopped', title: 'Reminders Stop', tag: 'Removed', plane: 'auto', icon: 'stop', col: 4, row: 1, at: 20, step: 2,
+      wf: 'SOL | 02 | Stop Form Reminders', note: 'Checks: solar-form-follow-up present',
+      about: 'If the follow-up tag is there, the person leaves Form Follow-Up and the tag comes off.' },
+    { id: 'told', title: 'Team Told', tag: 'Check contact', plane: 'auto', icon: 'chat', col: 5, row: 1, at: 22, step: 2,
+      wf: 'SOL | 02 | Stop Form Reminders', note: 'Sends: team notice',
+      about: 'My team gets a notice to check this contact and reply in person.' },
+  ]
+
+  const LINKS = [
+    { from: 'start', to: 'email', style: 'solid', at: 1 },
+    { from: 'email', to: 'r1', style: 'solid', at: 3 },
+    { from: 'r1', to: 'r2', style: 'solid', at: 5 },
+    { from: 'r2', to: 'r3', style: 'solid', at: 7 },
+    { from: 'r3', to: 'final', style: 'solid', at: 9 },
+    { from: 'email', to: 'sent', style: 'dashed', at: 11, label: 'Form sent back', lx: 202, ly: 292, anchor: 'middle' },
+    { from: 'sent', to: 'done', style: 'solid', at: 13 },
+    { from: 'done', to: 'review', style: 'solid', at: 15 },
+    { from: 'r2', to: 'reply', style: 'dashed', at: 17, label: 'Reply or stop tag', lx: 712, ly: 296, anchor: 'start' },
+    { from: 'reply', to: 'stopped', style: 'solid', at: 19 },
+    { from: 'stopped', to: 'r3', style: 'dashed', at: 20, label: 'Stops reminders', lx: 912, ly: 296, anchor: 'start' },
+    { from: 'stopped', to: 'told', style: 'solid', at: 21 },
+  ]
+
+  const ZONES = [
+    { id: 'send', task: '01', label: 'SOL | 01 | Send Solar Form', members: ['start', 'email'], labelAt: 'top' },
+    { id: 'follow', task: '02', label: 'SOL | 02 | Form Follow-Up', members: ['r1', 'r2', 'r3', 'final'], labelAt: 'top' },
+    { id: 'received', task: '01', label: 'SOL | 01 | Solar Form Received', members: ['sent', 'done', 'review'], labelAt: 'bottom' },
+    { id: 'stop', task: '02', label: 'SOL | 02 | Stop Form Reminders', members: ['reply', 'stopped', 'told'], labelAt: 'bottom' },
+  ]
+
+  // Icons on a 24 grid, drawn as light strokes.
+  const ICONS = {
+    tag: '<path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3-8.7 8.7z"/><circle cx="8" cy="8" r="1.4"/>',
+    mail: '<rect x="3" y="5.5" width="18" height="13" rx="1.2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>',
+    clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/>',
+    bell: '<path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.8 1.8H4.7z"/><path d="M10 20.3a2 2 0 0 0 4 0"/>',
+    team: '<circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c0-3.2 2.5-5.4 5.5-5.4s5.5 2.2 5.5 5.4"/><circle cx="16.8" cy="9.3" r="2.4"/><path d="M15.8 13.8c2.8 0 4.7 2 4.7 4.7"/>',
+    form: '<path d="M6 3.5h8.5l3.5 3.5v13.5H6z"/><path d="M14.5 3.5V7H18"/><path d="M9 12h6M9 15.5h4.5"/>',
+    check: '<circle cx="12" cy="12" r="8.5"/><path d="M8.3 12.4l2.6 2.6 5-5.4"/>',
+    review: '<circle cx="10" cy="8" r="3.4"/><path d="M3.5 20c0-3.6 2.9-6.2 6.5-6.2 1.2 0 2.3.3 3.2.8"/><path d="M15 17.3l2 2 4-4.3"/>',
+    reply: '<path d="M9.5 6.5L4.5 11.5l5 5"/><path d="M4.8 11.5h9.7a5.5 5.5 0 0 1 5.5 5.5v1.5"/>',
+    stop: '<path d="M8.3 3.5h7.4l4.8 4.8v7.4l-4.8 4.8H8.3l-4.8-4.8V8.3z"/><path d="M10 9v6M14 9v6"/>',
+    chat: '<path d="M4 5h16v11H10l-4.5 3.5V16H4z"/><path d="M8 9.5h8M8 12.5h5"/>',
+  }
+
+  const UNITS = Math.max(...NODES.map((n) => n.at)) + 1
+  const unit = (BUILD_TO - BUILD_FROM) / UNITS
+  const timed = (u) => ({ a: BUILD_FROM + u * unit, b: BUILD_FROM + u * unit + unit * 0.8 })
+  NODES.forEach((n, i) => Object.assign(n, box(n.col, n.row), timed(n.at), { index: i }))
+  const byId = new Map(NODES.map((n) => [n.id, n]))
+  const cx = (n) => n.x + n.w / 2
+  const mid = (n) => n.y + n.h / 2
+
+  LINKS.forEach((l) => {
+    const f = byId.get(l.from), t = byId.get(l.to)
+    Object.assign(l, timed(l.at), { id: `${l.from}-${l.to}` })
+    if (f.row === t.row) {
+      l.x1 = f.x + f.w; l.x2 = t.x - 6; l.y = mid(f)
+      l.d = `M${l.x1} ${l.y} H${l.x2}`
+    } else if (t.row > f.row) {
+      l.d = `M${cx(f)} ${f.y + f.h} V${t.y - 74} H${cx(t)} V${t.y}`
+    } else {
+      l.d = `M${cx(f)} ${f.y} V${t.y + t.h}`
+    }
+  })
+
+  ZONES.forEach((z) => {
+    const m = z.members.map((id) => byId.get(id))
+    z.x = Math.min(...m.map((n) => n.x)) - 14
+    z.y = Math.min(...m.map((n) => n.y)) - 24
+    z.w = Math.max(...m.map((n) => n.x + n.w)) + 14 - z.x
+    z.h = Math.max(...m.map((n) => n.y + n.h)) + 20 - z.y
+    z.a = Math.min(...m.map((n) => n.a))
+    z.b = z.a + unit * 0.4
+  })
+
+  const stepStarts = steps.map((_, k) => (k === 0 ? 0 : Math.min(...NODES.filter((n) => n.step === k).map((n) => n.a))))
+
+  const related = (id) => {
+    const set = new Set([id])
+    for (const l of LINKS) {
+      if (l.from === id) set.add(l.to)
+      if (l.to === id) set.add(l.from)
+    }
+    return set
+  }
+
+  // ---------- Render the static markup ----------
+  const root = document.getElementById('automation')
+  const svg = document.getElementById('fl-svg')
+  const panel = document.getElementById('fl-panel')
+  const inspect = document.getElementById('fl-inspect')
+  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+  document.getElementById('fl-steps').innerHTML = steps
+    .map((s, i) => `<li data-fl-step="${i}"><span class="fl__num">${pad2(i + 1)}</span>${s.name}</li>`).join('')
+  document.getElementById('fl-details').innerHTML = steps.map((s, i) => `<p data-fl-detail="${i}">${s.body}</p>`).join('')
+  document.getElementById('fl-bars').innerHTML = NODES.map((n) => `<i data-fl-bar="${n.index}"></i>`).join('')
+  document.getElementById('fl-desc').innerHTML = NODES.map((n) => `<p id="fl-d-${n.id}">${esc(n.about)}</p>`).join('')
+
+  const dashed = LINKS.filter((l) => l.style === 'dashed')
+  let out = `<defs>
+    <marker id="fl-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="fl__arrow" d="M0 0 L10 5 L0 10 Z"/></marker>
+    ${dashed.map((l) => `<mask id="fl-m-${l.id}" maskUnits="userSpaceOnUse" x="0" y="0" width="${VIEW.w}" height="${VIEW.h}"><path d="${l.d}" pathLength="1" class="fl__mask-draw" data-fl-mask="${l.id}"/></mask>`).join('')}
+  </defs>`
+  out += ZONES.map((z) => {
+    const ty = z.labelAt === 'top' ? z.y - 12 : z.y + z.h + 22
+    return `<g class="fl__zone" data-fl-zone="${z.id}" data-task="${z.task}" data-a="${z.a}" data-b="${z.b}"><rect x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}"/><text x="${z.x + z.w / 2}" y="${ty}">${esc(z.label)}</text></g>`
+  }).join('')
+  out += LINKS.map((l) => l.style === 'solid'
+    ? `<g class="fl__link" data-link="${l.id}" data-style="solid"><path d="${l.d}" pathLength="1" class="fl__signal" data-fl-link="${l.id}" data-a="${l.a}" data-b="${l.b}" marker-end="url(#fl-arrow)"/><circle class="fl__packet" r="3.5" cx="${l.x1}" cy="${l.y}" data-fl-packet="${l.id}" data-x1="${l.x1}" data-x2="${l.x2}"/></g>`
+    : `<g class="fl__link" data-link="${l.id}" data-style="dashed"><path d="${l.d}" class="fl__dash" mask="url(#fl-m-${l.id})" data-fl-link="${l.id}" data-a="${l.a}" data-b="${l.b}"/>${l.label ? `<text class="fl__link-label" x="${l.lx}" y="${l.ly}" text-anchor="${l.anchor}" data-fl-label="${l.id}">${esc(l.label)}</text>` : ''}</g>`
+  ).join('')
+  out += NODES.map((n) => `<g class="fl__node" data-plane="${n.plane}" data-fl-node="${n.id}" data-a="${n.a}" data-b="${n.b}" role="button" tabindex="0" aria-pressed="false" aria-labelledby="fl-t-${n.id} fl-g-${n.id}" aria-describedby="fl-d-${n.id}">
+      <rect class="fl__box" x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"/>
+      <path class="fl__contour" d="M${n.x} ${n.y} h${n.w} v${n.h} h${-n.w} Z" pathLength="1"/>
+      <rect class="fl__mark" x="${n.x + 9}" y="${n.y + 9}" width="6" height="6"/>
+      <text id="fl-t-${n.id}" class="fl__title" x="${n.x + n.w / 2}" y="${n.y + 33}">${esc(n.title)}</text>
+      <g class="fl__icon" transform="translate(${n.x + n.w / 2 - 20} ${n.y + n.h / 2 - 18})"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">${ICONS[n.icon]}</svg></g>
+      <g class="fl__tag"><rect x="${n.x + 10}" y="${n.y + n.h - 32}" width="${n.w - 20}" height="20"/><text id="fl-g-${n.id}" x="${n.x + n.w / 2}" y="${n.y + n.h - 18.4}">${esc(n.tag)}</text></g>
+    </g>`).join('')
+  svg.innerHTML = out
+
+  // ---------- Inspector, hover and phone zoom ----------
+  const hoverQuery = window.matchMedia('(hover: hover) and (pointer: fine)')
+  const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  let hover = hoverQuery.matches
+  let focus = null
+  let zoomed = false
+  const nodeEls = Array.from(svg.querySelectorAll('[data-fl-node]'))
+  const linkEls = Array.from(svg.querySelectorAll('.fl__link'))
+  const barEls = Array.from(document.querySelectorAll('[data-fl-bar]'))
+
+  const caret = (d) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`
+
+  function paintFocus() {
+    const rel = focus ? related(focus) : null
+    const current = focus ? byId.get(focus) : null
+    if (focus) panel.setAttribute('data-focus', focus)
+    else panel.removeAttribute('data-focus')
+    nodeEls.forEach((el) => {
+      const id = el.getAttribute('data-fl-node')
+      el.toggleAttribute('data-rel', !!rel && rel.has(id))
+      el.toggleAttribute('data-on', focus === id)
+      el.setAttribute('aria-pressed', String(focus === id))
+    })
+    linkEls.forEach((el) => {
+      const l = LINKS.find((k) => k.id === el.getAttribute('data-link'))
+      el.toggleAttribute('data-hi', !!focus && (l.from === focus || l.to === focus))
+    })
+    barEls.forEach((el, i) => el.toggleAttribute('data-on', !!current && current.index === i))
+
+    let html = current
+      ? `<div class="fl__card">
+          <p class="fl__chip"><span data-plane="${current.plane}">${current.plane === 'auto' ? 'Automation' : 'Lead or my team'}</span><span>${esc(current.wf)}</span></p>
+          <h4>${esc(current.title)}</h4>
+          <p class="fl__about">${esc(current.about)}</p>
+          <p class="fl__note">${esc(current.note)}</p>
+        </div>`
+      : `<p class="fl__hint">${hover ? 'Hover a stage to inspect' : 'Tap a stage to inspect'}</p>`
+    if (!hover && zoomed && current) {
+      html += `<div class="fl__pager">
+          <button type="button" data-step="-1" aria-label="Previous stage">${caret('M15 5l-7 7 7 7')}</button>
+          <span>${pad2(current.index + 1)} / ${pad2(NODES.length)}</span>
+          <button type="button" data-step="1" aria-label="Next stage">${caret('M9 5l7 7-7 7')}</button>
+        </div>`
+    }
+    inspect.innerHTML = html
+    zoomTo(!hover && zoomed && current ? zoomBox(current) : FULL)
+  }
+
+  function zoomBox(n, width = 420) {
+    const height = (width * FULL[3]) / FULL[2]
+    const x = Math.min(FULL[2] - width, Math.max(0, cx(n) - width / 2))
+    const y = Math.min(FULL[1] + FULL[3] - height, Math.max(FULL[1], mid(n) - height / 2))
+    return [x, y, width, height]
+  }
+
+  let viewBox = FULL.slice()
+  let zoomFrame = 0
+  function zoomTo(target) {
+    if (target.every((v, i) => Math.abs(v - viewBox[i]) < 0.01)) return
+    cancelAnimationFrame(zoomFrame)
+    if (reduceQuery.matches) {
+      viewBox = target.slice()
+      svg.setAttribute('viewBox', viewBox.join(' '))
+      return
+    }
+    const from = viewBox.slice()
+    const t0 = performance.now()
+    const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+    const tick = (now) => {
+      const t = clamp01((now - t0) / 700)
+      viewBox = from.map((v, i) => v + (target[i] - v) * ease(t))
+      svg.setAttribute('viewBox', viewBox.join(' '))
+      if (t < 1) zoomFrame = requestAnimationFrame(tick)
+    }
+    zoomFrame = requestAnimationFrame(tick)
+  }
+
+  function choose(id) {
+    if (hover) { focus = id; return paintFocus() }
+    const again = focus === id && zoomed
+    focus = again ? null : id
+    zoomed = !again
+    paintFocus()
+  }
+
+  nodeEls.forEach((el) => {
+    const id = el.getAttribute('data-fl-node')
+    el.addEventListener('pointerenter', () => { if (hover) { focus = id; paintFocus() } })
+    el.addEventListener('focus', () => { if (hover) { focus = id; paintFocus() } })
+    el.addEventListener('click', () => choose(id))
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(id) }
+      else if (e.key === 'Escape') { focus = null; zoomed = false; paintFocus() }
+    })
+  })
+  svg.addEventListener('pointerleave', () => { if (hover) { focus = null; paintFocus() } })
+  inspect.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-step]')
+    if (!btn || !focus) return
+    const by = Number(btn.getAttribute('data-step'))
+    const i = byId.get(focus).index
+    focus = NODES[(i + by + NODES.length) % NODES.length].id
+    zoomed = true
+    paintFocus()
+  })
+  hoverQuery.addEventListener('change', () => { hover = hoverQuery.matches; zoomed = false; focus = null; paintFocus() })
+  paintFocus()
+
+  // ---------- Scroll scene: every state is a pure function of progress ----------
+  const time = (el) => ({ a: Number(el.getAttribute('data-a')), b: Number(el.getAttribute('data-b')) })
+  const nodes = nodeEls.map((el) => ({
+    el, ...time(el),
+    contour: el.querySelector('.fl__contour'),
+    parts: Array.from(el.querySelectorAll('.fl__mark, .fl__title, .fl__icon, .fl__tag')),
+  }))
+  const leads = Array.from(svg.querySelectorAll('.fl__signal')).map((el) => {
+    const packet = svg.querySelector(`[data-fl-packet="${el.getAttribute('data-fl-link')}"]`)
+    return { el, ...time(el), packet, x1: Number(packet.getAttribute('data-x1')), x2: Number(packet.getAttribute('data-x2')) }
+  })
+  const dashes = Array.from(svg.querySelectorAll('.fl__dash')).map((el) => {
+    const id = el.getAttribute('data-fl-link')
+    return { el, ...time(el), mask: svg.querySelector(`[data-fl-mask="${id}"]`), label: svg.querySelector(`[data-fl-label="${id}"]`) }
+  })
+  const zones = Array.from(svg.querySelectorAll('[data-fl-zone]')).map((el) => ({ el, ...time(el) }))
+  const stepEls = Array.from(root.querySelectorAll('[data-fl-step]'))
+  const detailEls = Array.from(root.querySelectorAll('[data-fl-detail]'))
+  const fill = root.querySelector('[data-fl-fill]')
+  const readout = root.querySelector('[data-fl-readout]')
+  const order = NODES.slice().sort((x, y) => x.a - y.a)
+
+  function render(p) {
+    for (const n of nodes) {
+      const t = clamp01((p - n.a) / (n.b - n.a))
+      const settle = clamp01((p - n.b) / SETTLE)
+      n.contour.style.strokeDashoffset = String(1 - t)
+      n.contour.style.opacity = String(t > 0 ? 1 - 0.7 * settle : 0)
+      for (const part of n.parts) part.style.opacity = String(0.3 + 0.7 * t)
+    }
+    const replay = clamp01((p - REPLAY[0]) / (REPLAY[1] - REPLAY[0]))
+    leads.forEach((l, i) => {
+      const t = clamp01((p - l.a) / (l.b - l.a))
+      l.el.style.strokeDashoffset = String(1 - t)
+      l.el.style.opacity = String(t > 0 ? 0.85 : 0)
+      l.el.setAttribute('marker-end', t > 0.97 ? 'url(#fl-arrow)' : 'none')
+      const run = replay > 0 && replay < 1 ? clamp01(replay * 1.4 - (i / Math.max(1, leads.length - 1)) * 0.4) : t
+      const flying = (t > 0 && t < 1) || (replay > 0 && replay < 1 && run > 0 && run < 1)
+      l.packet.setAttribute('cx', String(l.x1 + (l.x2 - l.x1) * run))
+      l.packet.style.opacity = flying ? '1' : '0'
+    })
+    for (const z of zones) z.el.style.opacity = String(0.35 + 0.65 * clamp01((p - z.a) / (z.b - z.a)))
+    for (const l of dashes) {
+      const t = clamp01((p - l.a) / (l.b - l.a))
+      l.mask.style.strokeDashoffset = String(1 - t)
+      if (l.label) l.label.style.opacity = String(clamp01(t * 2 - 1))
+    }
+    let active = 0
+    stepStarts.forEach((start, k) => { if (p >= start) active = k })
+    stepEls.forEach((s, k) => { s.toggleAttribute('data-on', k === active); s.toggleAttribute('data-done', k <= active) })
+    detailEls.forEach((d, k) => d.toggleAttribute('data-on', k === active))
+    if (fill) fill.style.transform = `scaleY(${clamp01(p / CONNECTED)})`
+    const started = order.filter((n) => n.a <= p)
+    const last = started[started.length - 1]
+    barEls.forEach((bar, i) => bar.toggleAttribute('data-build', !!last && last.index === i))
+    const live = p >= CONNECTED
+    const label = live ? 'Built and tested' : (last ? last.title : '')
+    readout.toggleAttribute('data-live', live)
+    if (readout.textContent !== label) readout.textContent = label
+  }
+
+  function reset() {
+    root.removeAttribute('data-live')
+    for (const n of nodes) {
+      n.contour.style.removeProperty('stroke-dashoffset')
+      n.contour.style.removeProperty('opacity')
+      n.parts.forEach((part) => part.style.removeProperty('opacity'))
+    }
+    for (const l of leads) {
+      l.el.style.removeProperty('stroke-dashoffset')
+      l.el.style.removeProperty('opacity')
+      l.packet.style.opacity = '0'
+      l.el.setAttribute('marker-end', 'url(#fl-arrow)')
+    }
+    for (const l of dashes) {
+      l.mask.style.removeProperty('stroke-dashoffset')
+      if (l.label) l.label.style.removeProperty('opacity')
+    }
+    zones.forEach((z) => z.el.style.removeProperty('opacity'))
+    if (fill) fill.style.removeProperty('transform')
+    stepEls.forEach((s) => { s.removeAttribute('data-on'); s.setAttribute('data-done', '') })
+    readout.textContent = ''
+  }
+
+  let frame = 0
+  const progress = () => {
+    const rect = root.getBoundingClientRect()
+    const span = rect.height - window.innerHeight
+    return span > 0 ? clamp01(-rect.top / span) : 1
+  }
+  const onScroll = () => {
+    if (frame) return
+    frame = requestAnimationFrame(() => { frame = 0; render(progress()) })
+  }
+  function setup() {
+    window.removeEventListener('scroll', onScroll)
+    window.removeEventListener('resize', onScroll)
+    if (reduceQuery.matches) return reset()
+    root.setAttribute('data-live', '')
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    render(progress())
+  }
+  reduceQuery.addEventListener('change', setup)
+  setup()
+})()
+</script>
+
+</html>
