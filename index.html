@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Scroll-built diagram of the Task 01 and Task 02 GHL workflows, from the solar form email to reminders and team hand-off.">
+<meta name="description" content="Scroll-built diagram of the Task 01 to 03 GHL workflows, from the solar form email through reminders, team hand-off and quote-file collection.">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Solar Form Automation</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -138,7 +138,7 @@ body {
 .fl {
   --bar: 0px;
   position: relative;
-  height: 340svh;
+  height: 440svh;
   container-type: inline-size;
 }
 .fl__pin {
@@ -269,9 +269,9 @@ body {
   width: 100%;
   max-width: 100%;
   height: auto;
-  max-height: calc(100svh - 420px);
+  max-height: calc(100svh - 380px);
   min-height: 150px;
-  aspect-ratio: 1200 / 555;
+  aspect-ratio: 1200 / 855;
   margin-top: 4px;
   overflow: hidden;
 }
@@ -291,6 +291,7 @@ body {
   text-transform: uppercase;
 }
 .fl__zone[data-task='02'] > text { fill: var(--accent-ink); }
+.fl__zone[data-task='03'] > text { fill: var(--ok); }
 .fl__node { cursor: pointer; outline: none; transition: opacity 450ms ease; }
 .fl__box {
   fill: var(--bg);
@@ -363,7 +364,7 @@ body {
   gap: 12px;
   min-height: 112px;
   padding-top: 8px;
-  padding-right: 250px;
+  padding-right: 290px;
 }
 .fl__card { display: grid; gap: 6px; min-width: 0; animation: fl-in 350ms var(--ease-spring); }
 @keyframes fl-in { from { opacity: 0; transform: translateY(8px); } }
@@ -418,7 +419,7 @@ body {
 .fl__pager > button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .fl__bars { position: absolute; right: clamp(16px, 2.4cqi, 28px); bottom: 22px; display: flex; gap: 5px; }
 .fl__bars > i {
-  width: 14px;
+  width: 10px;
   height: 2px;
   background: var(--line-strong);
   transform: scaleX(0.55);
@@ -429,7 +430,7 @@ body {
 .fl__panel:not([data-focus]) .fl__bars > i[data-build] { background: var(--ink); transform: none; }
 
 @media (max-width: 767px) {
-  .fl { --bar: 0px; height: 300svh; }
+  .fl { --bar: 0px; height: 400svh; }
   .fl__inspect { padding-right: 0; }
   .fl__readout, .fl__bars { display: none; }
   .fl__svg { max-height: none; }
@@ -475,6 +476,9 @@ body {
   white-space: nowrap;
 }
 .flows__status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.flows__status[data-state='next'] { color: var(--ink-3); }
+.flows__status[data-state='next']::before { background: none; box-shadow: inset 0 0 0 1px currentColor; }
+.flows__list > li[data-state='next'] .flows__name { color: var(--ink-2); }
 .flows__open { margin: 0; max-width: 72ch; color: var(--ink-2); font-size: 14px; }
 .flows__open b { color: var(--warn); font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-right: 8px; }
 code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink); }
@@ -488,9 +492,10 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
   <div class="intro__inner">
     <p class="wk-eyebrow">LCS Solar · Email automation · GHL</p>
     <h1>From inquiry <b>to team review</b></h1>
-    <p>Tasks 01 and 02 are built and tested. One tag sends the solar form, three reminders follow if it does not come back, and a sent form or a reply stops them and tells my team. Scroll to watch the flow build.</p>
+    <p>Tasks 01 and 02 are built and tested. One tag sends the solar form, three reminders follow if it does not come back, and a sent form or a reply stops them and tells my team. Task 03 is under way: the quote-details email and its reminders are built and tested. Scroll to watch the flow build.</p>
     <div class="intro__meta">
-      <span class="ok">4 workflows tested</span>
+      <span class="ok">6 workflows tested</span>
+      <span>3 to build</span>
       <span>Email only</span>
       <span><span class="cue" aria-hidden="true">↓</span> Scroll</span>
     </div>
@@ -500,8 +505,8 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
 <section id="automation" class="fl" aria-labelledby="fl-title">
   <div class="fl__pin wrap">
     <header class="fl__head">
-      <p class="wk-eyebrow">Live automation · Tasks 01 + 02</p>
-      <h2 id="fl-title" class="wk-title"><span>Ask. Remind.</span> <span class="wk-title__bold">Hand off.</span></h2>
+      <p class="wk-eyebrow">Live automation · Tasks 01 to 03</p>
+      <h2 id="fl-title" class="wk-title"><span>Ask. Remind.</span> <span class="wk-title__bold">Collect.</span></h2>
     </header>
     <div class="fl__grid">
       <div class="fl__rail">
@@ -511,11 +516,11 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
       </div>
       <div class="fl__panel" id="fl-panel">
         <div class="fl__panel-head">
-          <h3 class="fl__panel-title">Inquiry to <span>Team Review</span></h3>
+          <h3 class="fl__panel-title">Inquiry to <span>Quote Files</span></h3>
           <p class="fl__legend"><span data-plane="auto">Automation</span><span data-plane="lead">Lead or my team</span></p>
           <span class="fl__readout" data-fl-readout aria-hidden="true"></span>
         </div>
-        <svg class="fl__svg" id="fl-svg" viewBox="0 10 1200 555" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Inquiry to team review"></svg>
+        <svg class="fl__svg" id="fl-svg" viewBox="0 10 1200 855" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Inquiry to quote files"></svg>
         <div hidden id="fl-desc"></div>
         <div class="fl__inspect" id="fl-inspect" aria-live="polite"></div>
         <span class="fl__bars" id="fl-bars" aria-hidden="true"></span>
@@ -528,7 +533,7 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
   <div class="flows__inner">
     <div>
       <p class="wk-eyebrow">What is built</p>
-      <h2 id="flows-title" class="wk-title"><span>Four</span> <span class="wk-title__bold">workflows</span></h2>
+      <h2 id="flows-title" class="wk-title"><span>Six</span> <span class="wk-title__bold">workflows tested</span></h2>
     </div>
     <ol class="flows__list">
       <li>
@@ -559,17 +564,52 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
         <p class="flows__does">If the follow-up tag is there, removes the person from reminders, removes the tag and tells my team.</p>
         <span class="flows__status">Tested</span>
       </li>
+      <li>
+        <span class="flows__task">03</span>
+        <p class="flows__name">SOL | 03 | Send Quote Details Form</p>
+        <p class="flows__start"><b>Starts on</b><code>solar-send-requirements</code> tag</p>
+        <p class="flows__does">Checks the email, DND, form link and the complete and stop tags. Sends the quote-details form, then adds <code>solar-files-follow-up</code>.</p>
+        <span class="flows__status">Tested</span>
+      </li>
+      <li>
+        <span class="flows__task">03</span>
+        <p class="flows__name">SOL | 03 | Quote Detail Reminders</p>
+        <p class="flows__start"><b>Starts on</b><code>solar-files-follow-up</code> tag</p>
+        <p class="flows__does">Three reminders on Day 1, Day 3 and Day 7. Each one names the missing items if my team listed them, or links the form.</p>
+        <span class="flows__status">Tested</span>
+      </li>
+      <li data-state="next">
+        <span class="flows__task">03</span>
+        <p class="flows__name">SOL | 03 | Quote Details Received</p>
+        <p class="flows__start"><b>Starts on</b>Solar - Quote Details sent</p>
+        <p class="flows__does">Stops the file reminders, marks the files Received and gives my file checker a task.</p>
+        <span class="flows__status" data-state="next">Next</span>
+      </li>
+      <li data-state="next">
+        <span class="flows__task">03</span>
+        <p class="flows__name">SOL | 03 | Files Checked</p>
+        <p class="flows__start"><b>Starts on</b>Solar Files Status changed</p>
+        <p class="flows__does">Complete: my quote maker gets a task. Need more: the person gets an email naming the missing items.</p>
+        <span class="flows__status" data-state="next">Next</span>
+      </li>
+      <li data-state="next">
+        <span class="flows__task">03</span>
+        <p class="flows__name">SOL | 03 | Stop File Reminders</p>
+        <p class="flows__start"><b>Starts on</b>Email reply or <code>solar-files-stop</code></p>
+        <p class="flows__does">Takes the person out of the file reminders and tells my team.</p>
+        <span class="flows__status" data-state="next">Next</span>
+      </li>
     </ol>
-    <p class="flows__open"><b>Open checks</b>The stop flow's branch should look for <code>solar-form-follow-up</code>, not the stop tag. The team notice in Solar Form Received shows the form answers blank.</p>
+    <p class="flows__open"><b>Open checks</b>The stop flow's branch should look for <code>solar-form-follow-up</code>, not the stop tag. The team notice in Solar Form Received shows the form answers blank. Send Quote Details Form does not yet clear the old file status, and the missing-items version of the file reminders is not tested yet.</p>
   </div>
 </section>
 
 <script>
 (() => {
   const VIEW = { w: 1200, h: 600 }
-  const FULL = [0, 10, 1200, 555]
+  const FULL = [0, 10, 1200, 855]
   const BUILD_FROM = 0.015, BUILD_TO = 0.8, CONNECTED = 0.85, REPLAY = [0.85, 0.96], SETTLE = 0.05
-  const ROWS = [64, 376]
+  const ROWS = [64, 360, 676]
   const box = (col, row) => ({ x: 24 + col * 200, y: ROWS[row], w: 156, h: 136 })
   const pad2 = (n) => String(n).padStart(2, '0')
   const clamp01 = (v) => Math.min(1, Math.max(0, v))
@@ -578,6 +618,7 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
     { name: 'Ask', body: 'My team adds one tag. The flow checks the rules, then emails the short solar form.' },
     { name: 'Remind', body: 'No form yet? Three reminders go out on Day 1, Day 3 and Day 7, with a rule check before each.' },
     { name: 'Hand off', body: 'A sent form, an email reply or the stop tag ends the reminders and tells my team.' },
+    { name: 'Collect files', body: 'When my team says we can help, I ask for the quote details and power bill, with three reminders that can name missing items.' },
   ]
 
   // `at` is the build order in units: a stage or a link is one unit. Top row = the send and reminder path,
@@ -619,6 +660,24 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
     { id: 'told', title: 'Team Told', tag: 'Check contact', plane: 'auto', icon: 'chat', col: 5, row: 1, at: 22, step: 2,
       wf: 'SOL | 02 | Stop Form Reminders', note: 'Sends: team notice',
       about: 'My team gets a notice to check this contact and reply in person.' },
+    { id: 'ask', title: 'Team Says Yes', tag: 'Team adds tag', plane: 'lead', icon: 'tag', col: 0, row: 2, at: 24, step: 3,
+      wf: 'SOL | 03 | Send Quote Details Form', note: 'Starts on: solar-send-requirements',
+      about: 'After the form review, my team adds solar-send-requirements when we can help. That starts Task 03.' },
+    { id: 'qemail', title: 'Details Email', tag: 'Form + bill', plane: 'auto', icon: 'mail', col: 1, row: 2, at: 26, step: 3,
+      wf: 'SOL | 03 | Send Quote Details Form', note: 'Adds: solar-files-follow-up',
+      about: 'Checks the email, DND, the form link and the complete and stop tags. Then it sends the quote-details form and starts the file reminders.' },
+    { id: 'f1', title: 'File Reminder 1', tag: 'Day 1', plane: 'auto', icon: 'clock', col: 2, row: 2, at: 28, step: 3,
+      wf: 'SOL | 03 | Quote Detail Reminders', note: 'Wait: 1 day · Picks: missing items or form version',
+      about: 'Waits 1 day and checks the rules again. If my team listed missing items, the email names them. If not, it links the form.' },
+    { id: 'f2', title: 'File Reminder 2', tag: 'Day 3', plane: 'auto', icon: 'clock', col: 3, row: 2, at: 30, step: 3,
+      wf: 'SOL | 03 | Quote Detail Reminders', note: 'Wait: 2 more days, then check the rules',
+      about: 'Waits 2 more days and checks again. It uses the same two versions: missing items or the form link.' },
+    { id: 'f3', title: 'File Reminder 3', tag: 'Day 7', plane: 'auto', icon: 'bell', col: 4, row: 2, at: 32, step: 3,
+      wf: 'SOL | 03 | Quote Detail Reminders', note: 'Wait: 4 more days, then check the rules',
+      about: 'Waits 4 more days for the last reminder, with a rule check right before it sends.' },
+    { id: 'ffinal', title: 'Team Check-in', tag: 'No files yet', plane: 'auto', icon: 'team', col: 5, row: 2, at: 34, step: 3,
+      wf: 'SOL | 03 | Quote Detail Reminders', note: 'Removes: solar-files-follow-up',
+      about: 'After three reminders the follow-up tag comes off and my team gets a notice that three quote detail reminders were sent.' },
   ]
 
   const LINKS = [
@@ -627,13 +686,19 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
     { from: 'r1', to: 'r2', style: 'solid', at: 5 },
     { from: 'r2', to: 'r3', style: 'solid', at: 7 },
     { from: 'r3', to: 'final', style: 'solid', at: 9 },
-    { from: 'email', to: 'sent', style: 'dashed', at: 11, label: 'Form sent back', lx: 202, ly: 292, anchor: 'middle' },
+    { from: 'email', to: 'sent', style: 'dashed', at: 11, label: 'Form sent back', lx: 202, ly: 276, anchor: 'middle' },
     { from: 'sent', to: 'done', style: 'solid', at: 13 },
     { from: 'done', to: 'review', style: 'solid', at: 15 },
-    { from: 'r2', to: 'reply', style: 'dashed', at: 17, label: 'Reply or stop tag', lx: 712, ly: 296, anchor: 'start' },
+    { from: 'r2', to: 'reply', style: 'dashed', at: 17, label: 'Reply or stop tag', lx: 712, ly: 280, anchor: 'start' },
     { from: 'reply', to: 'stopped', style: 'solid', at: 19 },
-    { from: 'stopped', to: 'r3', style: 'dashed', at: 20, label: 'Stops reminders', lx: 912, ly: 296, anchor: 'start' },
+    { from: 'stopped', to: 'r3', style: 'dashed', at: 20, label: 'Stops reminders', lx: 912, ly: 280, anchor: 'start' },
     { from: 'stopped', to: 'told', style: 'solid', at: 21 },
+    { from: 'review', to: 'ask', style: 'dashed', at: 23, label: 'Team says we can help', lx: 302, ly: 592, anchor: 'middle' },
+    { from: 'ask', to: 'qemail', style: 'solid', at: 25 },
+    { from: 'qemail', to: 'f1', style: 'solid', at: 27 },
+    { from: 'f1', to: 'f2', style: 'solid', at: 29 },
+    { from: 'f2', to: 'f3', style: 'solid', at: 31 },
+    { from: 'f3', to: 'ffinal', style: 'solid', at: 33 },
   ]
 
   const ZONES = [
@@ -641,6 +706,8 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--accent-ink
     { id: 'follow', task: '02', label: 'SOL | 02 | Form Follow-Up', members: ['r1', 'r2', 'r3', 'final'], labelAt: 'top' },
     { id: 'received', task: '01', label: 'SOL | 01 | Solar Form Received', members: ['sent', 'done', 'review'], labelAt: 'bottom' },
     { id: 'stop', task: '02', label: 'SOL | 02 | Stop Form Reminders', members: ['reply', 'stopped', 'told'], labelAt: 'bottom' },
+    { id: 'qsend', task: '03', label: 'SOL | 03 | Send Quote Details Form', members: ['ask', 'qemail'], labelAt: 'bottom' },
+    { id: 'qfollow', task: '03', label: 'SOL | 03 | Quote Detail Reminders', members: ['f1', 'f2', 'f3', 'ffinal'], labelAt: 'bottom' },
   ]
 
   // Icons on a 24 grid, drawn as light strokes.
